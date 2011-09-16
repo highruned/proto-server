@@ -1,11 +1,16 @@
 net = require('net')
 game = require('proto-game')
+network = game.network
 
 packet_num = 0
 
 class program extends game.program
 	constructor: () ->
 		super()
+
+		@id = new network.process_id
+			label: Math.floor(Math.random() * 99999)
+			epoch: (new Date()).getTime()
 
 	run: () ->
 		@emit 'initialized'
@@ -18,10 +23,23 @@ class program extends game.program
 				
 				@clients.push(client)
 				
+				client.id = new network.process_id
+					label: Math.floor(Math.random() * 99999)
+					epoch: (new Date()).getTime()
+				
 			client.on 'data', (message) =>
 				service_id = message[0]
 				
-				@services[@get_service_by_id(service_id).name].process_message(client, message.slice(1))
+				console.log "Received [raw]: Length: ", message.length, message
+				
+				console.log "Trying to find service (" + service_id + ")."
+				
+				if service_id == 0xfe
+					service_id = 0
+				
+				@services[@get_service_by_id(service_id).name].receive
+					endpoint: client
+					message: message.slice(1)
 	
 		@server.listen(1119)
 		
