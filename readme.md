@@ -6,9 +6,10 @@ Community-driven Google Protobuf game server.
 
 * Working on the character page. Stuck on passing the hero list (storage service/hero digest byte array).
 
-# Instructions
+# Getting Started
 
-Move your `all.descriptor` file containing the raw Google Protobuf descriptor to the directory you will be running the application, eg. `examples/myserver`.
+* Download `proto-game` and follow the instructions there.
+* Move your `all.descriptor` file containing the raw Google Protobuf descriptor to the directory you will be running the application, eg. `examples/myserver`.
 
 # Notes
 

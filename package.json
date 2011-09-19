@@ -7,7 +7,6 @@
 		"url": "http://github.com/codeweaver/proto-server"
 	},
 	"dependencies": {
-		"proto-game": "*"
 	},
 	"author": "Codeweaver <code@weaver.com> (http://code.weaver.com/)",
 	"main": "index",
