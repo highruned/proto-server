@@ -11,4 +11,4 @@ exec = (command, params) ->
 	  sys.print(data.asciiSlice(0, data.length))
 
 exec 'coffee', ['-wco', __dirname + '/lib', __dirname + '/src']
-exec 'coffee', ['-wco', __dirname + '/examples', __dirname + '/examples']
+#exec 'coffee', ['-wco', __dirname + '/examples', __dirname + '/examples']

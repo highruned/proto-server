@@ -1,1 +1,1 @@
-exports.acceptor = require('./connector/acceptor').acceptor
+exports.acceptor = require('./acceptor/acceptor').acceptor

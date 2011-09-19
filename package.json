@@ -1,12 +1,13 @@
 {
 	"name": "proto-server",
 	"description": "Community-driven Google Protobuf game server.",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"homepage": "http://github.com/codeweaver/proto-server",
 	"repository": {
 		"url": "http://github.com/codeweaver/proto-server"
 	},
 	"dependencies": {
+		"proto-game": "*"
 	},
 	"author": "Codeweaver <code@weaver.com> (http://code.weaver.com/)",
 	"main": "index",
