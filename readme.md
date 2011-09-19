@@ -9,7 +9,7 @@ Community-driven Google Protobuf game server.
 # Getting Started
 
 * Download `proto-game` and follow the instructions there.
-* Move your `all.descriptor` file containing the raw Google Protobuf descriptor to the directory you will be running the application, eg. `examples/myserver`.
+* Move your `all.descriptor` file containing the raw Google Protobuf descriptor to the directory you will be running the application, eg. `examples/myserver` and then run `coffee myserver.coffee`.
 
 # Notes
 
