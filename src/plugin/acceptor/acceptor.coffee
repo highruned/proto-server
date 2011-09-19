@@ -11,6 +11,8 @@ class acceptor extends plugin
 	
 	set_program: (@program) ->
 		@program.on 'initialized', () =>
+		
+
 			connection_service = @program.get_service('network.connection.service')
 			response_service = @program.get_service('network.response.service')
 		
@@ -46,7 +48,7 @@ class acceptor extends plugin
 						console.error "Could not find service, by hash: ", service_hash.toString(16)
 						process.exit 1
 					
-					console.log "Request: Service Name: ", service?.name, " Service Hash: 0x" + service_hash.toString(16), " Service ID: ", service?.id
+					console.log "Binding: Service Name: ", service?.name, " Service Hash: 0x" + service_hash.toString(16), " Service ID: ", service?.id
 					
 					if !service
 						continue
@@ -151,16 +153,14 @@ class acceptor extends plugin
 			
 			toon_external_service.on 'toon_list_request', (message) =>
 				toon_list_response = new network.toon.external.toon_list_response
-					toons: [
-						new network.entity_id
-							high: 216174302532224051
-							low: 10824503355229695733
-						,
-						new network.entity_id
-							high: 216174302532224051
-							low: 14655650672318688456
-					]
+					toons: message.endpoint.toons
 					
+				###
+				,
+				new network.entity_id
+					high: 216174302532224051
+					low: 14655650672318688456
+				###
 				response_service.send 
 					request_id: message.request_id
 					endpoint: message.endpoint
@@ -325,11 +325,7 @@ class acceptor extends plugin
 					
 					process.exit 1
 				
-				operation_results = []
-				
-				operation_result = storage_service[message.payload.query_name](message.payload)
-				
-				operation_results.push(operation_result)
+				operation_results = storage_service[message.payload.query_name](message)
 				
 				execute_response = new network.storage.execute_response
 					results: operation_results

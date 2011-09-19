@@ -6,6 +6,11 @@ server = new proto_server.program
 	port: 1345
 	descriptor: fs.readFileSync('all.descriptor')
 
+# whisper service? 
+# storage -> RemoteStorage
+# rename all internal and external?
+# LocalStorage
+
 server.rebind_network
 	'network.message': 'custom.protocol.Message'
 	'network.no_data': 'bnet.protocol.NoData'

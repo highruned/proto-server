@@ -20,6 +20,11 @@ class program extends game.program
 		
 		@server = net.createServer (socket) =>
 			client = new game.client(socket)
+			client.toons = [
+				new network.entity_id
+					high: 216174302532224064
+					low: 10824503355229690000
+			]
 			
 			client.on 'connect', () =>
 				console.log "Connection from " + client.socket.remoteAddress
