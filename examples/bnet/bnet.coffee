@@ -89,6 +89,7 @@ server.rebind_network
 	'network.game.entity_id': 'D3.OnlineService.EntityId'
 	'network.game.hero.digest': 'D3.Hero.Digest'
 	'network.game.hero.visual_equipment': 'D3.Hero.VisualEquipment'
+	'network.game.hero.visual_item': 'D3.Hero.VisualItem'
 	'network.game.hero.quest_history_entry': 'D3.Hero.QuestHistoryEntry'
 	'network.game.account.banner_configuration': 'D3.OnlineService.EntityId'
 	'network.game.account.digest': 'D3.OnlineService.EntityId'

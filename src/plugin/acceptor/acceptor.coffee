@@ -21,14 +21,7 @@ class acceptor extends plugin
 				connect_response = new network.connection.connect_response
 					client_id: message.endpoint.id
 					server_id: @program.id
-				
-				# hardcoding
-				###
-				message = new Buffer("fe0000001a0a0c08dde98ebb0e10d4b9acf304120a089f8e0510a1b5b5f304").fromHex()
-				console.log 'Sending [fake]: Length: ', message.length, message
-				message.endpoint.write(message)
-				###
-				
+
 				response_service.send 
 					request_id: 0
 					endpoint: message.endpoint
@@ -63,17 +56,6 @@ class acceptor extends plugin
 				assert.equal(imported_service_id.length, message.payload.imported_service_hash.length)
 				
 				### proper
-				for service_hash, key in message.payload.imported_service_hash
-					service_id = @program.get_service_by_hash(service_hash)?.id
-					service = @program.get_service_by_id(service_id)
-					
-					console.log "Request: Service Hash: ", service_hash, " Service ID: ", service_id
-					
-					# we don't know if we have this service, but we'll say we do
-					imported_service_id.push(service_id)
-				
-				
-				exported_service = @program.get_service_by_id(message.payload.exported_service.id)
 				# our friend the client wants some services attached to his instance
 				message.endpoint.add_service(exported_service)
 				
@@ -95,7 +77,7 @@ class acceptor extends plugin
 			authentication_service.on 'logon_request', (message) =>
 				console.log message.payload
 				
-				# find accounts in DB
+				# find accounts in db
 				message.endpoint.account = new network.entity_id
 					low: 0
 					high: 0x100000000000000
@@ -134,14 +116,6 @@ class acceptor extends plugin
 			
 			channel_invitation_service.on 'subscribe_request', (message) =>
 				console.log message
-				###
-				entity_id {
-					high: 216174302532224051
-					low: 10824503355229695733
-				}
-				object_id: 8
-				###
-				
 				# getting object id 43 here.. no idea
 			
 				#service = @program.get_service_by_id(message.payload.object_id)
@@ -156,9 +130,7 @@ class acceptor extends plugin
 				response_service.send 
 					request_id: message.request_id
 					endpoint: message.endpoint
-					payload: subscribe_response	
-			
-				return
+					payload: subscribe_response
 				
 			party_service = @program.get_service('network.party.service')
 			
@@ -258,9 +230,8 @@ class acceptor extends plugin
 				response_service.send 
 					request_id: message.request_id
 					endpoint: message.endpoint
-					payload: subscribe_response	
-			
-				return
+					payload: subscribe_response
+
 
 			user_manager_service = @program.get_service('network.user_manager.service')
 			
@@ -291,22 +262,22 @@ class acceptor extends plugin
 				
 				attr1 = new network.attribute
 					name: "min_players"
-					value: network.variant
+					value: new network.variant
 						int_value: 2
 					
 				attr2 = new network.attribute
 					name: "max_players"
-					value: network.variant
+					value: new network.variant
 						int_value: 4
 					
 				attr3 = new network.attribute
 					name: "num_teams"
-					value: network.variant
+					value: new network.variant
 						int_value: 1
 					
 				attr4 = new network.attribute
 					name: "version"
-					value: network.variant
+					value: new network.variant
 						string_value: "0.3.0"
 	
 				stats = new network.game_master.game_stats_bucket
