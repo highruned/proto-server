@@ -1,3 +1,4 @@
+
 fs = require('fs')
 proto_server = require('../../src/__init__')
 proto_game = require('proto-game')
@@ -12,7 +13,8 @@ server = new proto_server.program
 # LocalStorage
 
 server.rebind_network
-	'network.message': 'custom.protocol.Message'
+	'network.packet': 'custom.protocol.rpc.Packet'
+	'network.varint': 'custom.protocol.rpc.Varint'
 	'network.no_data': 'bnet.protocol.NoData'
 	'network.process_id': 'bnet.protocol.connection.ProcessId'
 	'network.variant': 'bnet.protocol.attribute.Variant'
@@ -56,6 +58,8 @@ server.rebind_network
 	'network.toon.external.service': 'bnet.protocol.toon.external.ToonManagerService'
 	'network.toon.external.toon_list_request': 'bnet.protocol.toon.external.ToonListRequest'
 	'network.toon.external.toon_list_response': 'bnet.protocol.toon.external.ToonListResponse'
+	'network.toon.external.select_request': 'bnet.protocol.toon.external.SelectToonRequest'
+	'network.toon.external.select_response': 'bnet.protocol.toon.external.SelectToonResponse'
 	'network.toon.service': 'bnet.protocol.toon.ToonManagerService'
 	'network.party.service': 'bnet.protocol.party.PartyService'
 	'network.party.create_channel': 'bnet.protocol.party.CreateChannel'
@@ -97,7 +101,7 @@ server.rebind_network
 	'network.game.hero.visual_item': 'D3.Hero.VisualItem'
 	'network.game.hero.quest_history_entry': 'D3.Hero.QuestHistoryEntry'
 	'network.game.account.banner_configuration': 'D3.OnlineService.EntityId'
-	'network.game.account.digest': 'D3.OnlineService.EntityId'
+	'network.game.account.digest': 'D3.Account.Digest'
 
 server.add_service(new proto_game.network.connection.service())
 server.add_service(new proto_game.network.response.service())

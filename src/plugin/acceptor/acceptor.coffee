@@ -12,9 +12,12 @@ class acceptor extends plugin
 	set_program: (@program) ->
 		@program.on 'initialized', () =>
 		
-
-			connection_service = @program.get_service('network.connection.service')
 			response_service = @program.get_service('network.response.service')
+			
+			response_service.on 'handle_request', (message) =>
+				console.log 'Something bad happened.', message
+				
+			connection_service = @program.get_service('network.connection.service')
 		
 			connection_service.on 'disconnect_notification', (message) =>
 				console.log 'Disconnecting.', message
@@ -166,6 +169,17 @@ class acceptor extends plugin
 					endpoint: message.endpoint
 					payload: toon_list_response	
 			
+			toon_external_service.on 'select_request', (message) =>
+				console.log message
+			
+				select_response = new network.toon.external.select_response
+					toons: message.endpoint.toons
+
+				response_service.send 
+					request_id: message.request_id
+					endpoint: message.endpoint
+					payload: select_response	
+			
 			
 			followers_service = @program.get_service('network.followers.service')
 			
@@ -282,7 +296,7 @@ class acceptor extends plugin
 	
 				stats = new network.game_master.game_stats_bucket
 					bucket_min: 0
-					bucket_max: 4294967296
+					bucket_max: 4267296
 					wait_milliseconds: 1354
 					games_per_hour: 0
 					active_games: 50
@@ -301,7 +315,7 @@ class acceptor extends plugin
 						attr3,
 						attr4
 					]
-					
+				console.log factory
 				factories.push(factory)
 				
 				list_factories_response = new network.game_master.list_factories_response
