@@ -4,7 +4,7 @@ Community-driven Google Protobuf game server.
 
 # Status
 
-* Working on the character page. Stuck on passing the hero list (storage service/hero digest byte array).
+* Working on implementing the character creation. Just need to implement request handlers. (writing varints is working, reading varints is not).
 
 # Getting Started
 
