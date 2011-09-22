@@ -62,9 +62,6 @@ server.rebind_network
 	'network.toon.external.select_response': 'bnet.protocol.toon.external.SelectToonResponse'
 	'network.toon.service': 'bnet.protocol.toon.ToonManagerService'
 	'network.party.service': 'bnet.protocol.party.PartyService'
-	'network.party.create_channel': 'bnet.protocol.party.CreateChannel'
-	'network.party.join_channel': 'bnet.protocol.party.JoinChannel'
-	'network.party.get_channel_info': 'bnet.protocol.party.GetChannelInfo'
 	'network.followers.service': 'bnet.protocol.followers.FollowersService'
 	'network.followers.subscribe_to_followers_request': 'bnet.protocol.followers.SubscribeToFollowersRequest'
 	'network.user_manager.service': 'bnet.protocol.user_manager.UserManagerService'
@@ -82,6 +79,12 @@ server.rebind_network
 	'network.exchange.get_configuration_request': 'bnet.protocol.exchange.GetConfigurationRequest'
 	'network.exchange.get_bid_fee_estimation_request': 'bnet.protocol.exchange.GetBidFeeEstimationRequest'
 	'network.channel.service': 'bnet.protocol.channel.Channel' # doesn't suffix Service
+	'network.channel.create_channel_request': 'bnet.protocol.channel.CreateChannelRequest'
+	'network.channel.join_channel_request': 'bnet.protocol.channel.JoinChannelRequest'
+	'network.channel.get_channel_info_request': 'bnet.protocol.channel.GetChannelInfoRequest'
+	'network.channel.create_channel_response': 'bnet.protocol.channel.CreateChannelResponse'
+	'network.channel.join_channel_response': 'bnet.protocol.channel.JoinChannelResponse'
+	'network.channel.get_channel_info_response': 'bnet.protocol.channel.GetChannelInfoResponse'
 	'network.channel_owner.service': 'bnet.protocol.channel.ChannelOwner' # doesn't suffix Service
 	'network.channel_subscriber.service': 'bnet.protocol.channel.ChannelSubscriber' # doesn't suffix Service
 	'network.chat.service': 'bnet.protocol.chat.ChatService'

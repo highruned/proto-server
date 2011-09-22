@@ -140,7 +140,7 @@ class acceptor extends plugin
 			party_service = @program.get_service('network.party.service')
 			
 			party_service.on 'create_channel_request', (message) =>
-				create_channel_response = new network.party.create_channel_response
+				create_channel_response = new network.channel.create_channel_response
 					object_id: message.payload.object_id
 					channel_id: new network.entity_id
 						high: 0xccdd
